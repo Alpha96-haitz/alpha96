@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Portfolio - HAITZ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="porfolio.css">
+</head>
+<body>
+
+  <!-- NAVIGATION RESPONSIVE -->
+  <nav class="navbar">
+    <div class="logo">HAITZ-EMPIRE</div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#competances">Competances</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <div id="typewriter-container">
+      <span id="typewriter"></span><span id="cursor">|</span>
+    </div>
+  </header>
+
+  <!-- SECTION À PROPOS -->
+  <section id="about">
+    <h2>À propos de moi</h2>
+    <p>
+        Je suis un Développeur web formé à l'institut supérieur de technologie de Mamou, Passionné par les technologie moderne.
+        Spécialisé en PHP, MySQL, JavaScript, Html, Css, Windev, Python et admistration de base de données.
+    </p>
+  </section>
+  <section id="services">
+    <h2>Mes Services</h2>
+    <div class="services-grid">
+  
+      <div class="service">
+        <i class="fas fa-globe fa-2x icon-service"></i>
+        <h3>Création de sites web</h3>
+        <p>Sites vitrines, pages d’entreprise, portails dynamiques adaptés à vos besoins.</p>
+      </div>
+  
+      <div class="service">
+        <i class="fas fa-laptop-code fa-2x icon-service"></i>
+        <h3>Développement d'applications</h3>
+        <p>Applications desktop et web avec PHP, Java, WinDev, MySQL, etc.</p>
+      </div>
+  
+      <div class="service">
+        <i class="fas fa-chalkboard-teacher fa-2x icon-service"></i>
+        <h3>Formation et accompagnement</h3>
+        <p>Cours personnalisés en informatique, marketing digital, bureautique.</p>
+      </div>
+  
+    </div>
+  </section>
+  <section id="testimonials">
+  <h2>Témoignages</h2>
+  <div class="testimonials-grid">
+
+    <div class="testimonial">
+      <p>“Mamadou est un développeur très professionnel, à l’écoute et rapide dans l’exécution. Je recommande vivement !”</p>
+      <h4>— Client Anonyme</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“Excellent formateur. Grâce à ses cours, j’ai appris à utiliser Canva, PowerPoint et créer mes propres visuels.”</p>
+      <h4>— Apprenant de HAITZ-EMPIRE</h4>
+    </div>
+
+    <div class="testimonial">
+      <p>“Grâce à sa solution Windev, nous gérons désormais facilement nos ventes avec une base de données solide.”</p>
+      <h4>— Partenaire logiciel</h4>
+    </div>
+
+  </div>
+</section>
+<section id="stats" class="fade-in">
+  <h2>Mes Réalisations</h2>
+  <div class="stats-grid">
+    <div class="stat fade-in">
+      <h3 class="counter" data-target="15">0</h3>
+      <p>Projets réalisés</p>
+    </div>
+    
+    <div class="stat fade-in">
+      <h3 class="counter" data-target="35">0</h3>
+      <p>Étudiants formés</p>
+    </div>
+    
+    <div class="stat fade-in">
+      <h3 class="counter" data-target="6">0</h3>
+      <p>Sites web créés</p>
+    </div>
+    
+    <div class="stat fade-in">
+      <h3 class="counter" data-target="5">0</h3>
+      <p>Applications développées</p>
+    </div>    
+  </div>
+</section>
+
+
+  
+  <section id="competances">
+    <h2>Mes Compétances</h2>
+    <ul>
+        <li>HTML5 / CSS/ JavaScript</li>
+        <li>PHP / MySQL</li>
+        <li>Windev /HFSQL/ Accèes</li>
+        <li>admistration de base données</li>
+        <li>Création de Systèmes de gestion</li>
+        <li>Python / Django</li>
+    </ul>
+</section>
+
+  <!-- SECTION PROJETS -->
+  <section id="projects">
+    <h2>Mes Projets</h2>
+    <div class="projects">
+
+      <div class="project">
+        <img src="image/Access.PNG" alt="Projet Formulaire PHP">
+        <div class="project-description">
+          <h3>Formulaire PHP & MySQL</h3>
+          <p>Entièrement, Modification, suppression avec design Moderne.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="image/Java.PNG" alt="Projet Java">
+        <div class="project-description">
+          <h3>Application de gestion de vente (java, swing, H2)</h3>
+          <p>Application de gestion avec panier de commande , génére un code QR en fonction de la quantité, impression en format PDF.</p>
+        </div>
+      </div>
+      <div class="project">
+        <img src="image/widev.PNG" alt="Portfolio">
+        <div class="project-description">
+          <h3>Gestion d'agence d'assurance (windev,HFSQL) </h3>
+          <p>Projet complet avec gestion des contrats, des paiements, et une HFSQL.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="image/portFolio.PNG" alt="Portfolio">
+        <div class="project-description">
+          <h3>Creation d'un portfolio</h3>
+          <p>Entièrement réalisé avec HTML, CSS et JavaScript.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contacts">
+    <h2>Laisser moi un message</h2>
+    <form action="https://formspree.io/f/mzzrrlej" method="POST" class="contact-form">
+        <input type="text" name="nom" placeholder="Nom complet" required>
+        <input type="email" name="email" placeholder="Entrer votre mail" required>
+        <textarea name="message" rows="5" placeholder="Entrer votre message..." required></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+</section>
+
+  <!-- SECTION CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p><a href="cv/cv.pdf" class="btn-cv" download>Télécharger mon CV</a></p>
+    <p>Email : <a href="mailto:barrymamadoualpha124@gmail.com">barrymamadoualpha124@gmail.com</a></p>
+    <p>Téléphone : +224 621 956 596</p>
+    <p>Adresse : Gomboyah,Coyah, Conakry</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 HAITZ-EMPIRE. Tous droits réservés.
+  </footer>
+
+  <!-- SCRIPT JS -->
+  <script src="portFolio.js"></script>
+</body>
+</html>
