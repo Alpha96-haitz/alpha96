@@ -3,187 +3,369 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Portfolio - HAITZ</title>
+  <title>Mamadou Alpha Barry | Portfolio professionnel</title>
+  <meta name="description" content="Portfolio premium de Mamadou Alpha Barry, développeur web, administrateur réseau et gestionnaire de bases de données en Guinée. Projets, services, certifications et contact direct.">
+  <meta name="keywords" content="Mamadou Alpha Barry, Développeur Web Guinée, portfolio, administration réseau, bases de données">
+  <meta name="theme-color" content="#0a0f1e">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mamadou Alpha Barry | Portfolio Premium">
+  <meta property="og:description" content="Portfolio premium de Mamadou Alpha Barry : développement web, réseaux, bases de données, formation et marketing digital.">
+  <meta property="og:image" content="image/portFolio.PNG">
+  <meta property="og:url" content="https://alpha96.netlify.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alpha96.netlify.app">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="porfolio.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mamadou Alpha Barry",
+    "jobTitle": "Développeur Web | Administrateur Réseau | Gestionnaire de Bases de Données",
+    "url": "https://alpha96.netlify.app",
+    "email": "barrymamadoualpha124@gmail.com",
+    "sameAs": ["https://www.linkedin.com/in/mamadou-alpha-barry-965bb2103"]
+  }
+  </script>
 </head>
 <body>
+  <div class="site-shell">
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-  <!-- NAVIGATION RESPONSIVE -->
-  <nav class="navbar">
-    <div class="logo">HAITZ-EMPIRE</div>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#competances">Competances</a></li>
-      <li><a href="#projects">Projets</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HEADER -->
-  <header>
-    <div id="typewriter-container">
-      <span id="typewriter"></span><span id="cursor">|</span>
-    </div>
-  </header>
-
-  <!-- SECTION À PROPOS -->
-  <section id="about">
-    <h2>À propos de moi</h2>
-    <p>
-        Je suis un Développeur web formé à l'institut supérieur de technologie de Mamou, Passionné par les technologie moderne.
-        Spécialisé en PHP, MySQL, JavaScript, Html, Css, Windev, Python et admistration de base de données.
-    </p>
-  </section>
-  <section id="services">
-    <h2>Mes Services</h2>
-    <div class="services-grid">
-  
-      <div class="service">
-        <i class="fas fa-globe fa-2x icon-service"></i>
-        <h3>Création de sites web</h3>
-        <p>Sites vitrines, pages d’entreprise, portails dynamiques adaptés à vos besoins.</p>
+    <nav class="navbar">
+      <a class="brand" href="#hero" aria-label="Retour à l'accueil">Portfolio</a>
+      <a class="nav-home" href="#hero">Accueil</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#hero">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#timeline">Parcours</a>
+        <a href="#skills">Compétences</a>
+        <a href="#projects">Projets</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-mobile-cta" href="cv/cv.pdf" download>Télécharger le CV</a>
       </div>
-  
-      <div class="service">
-        <i class="fas fa-laptop-code fa-2x icon-service"></i>
-        <h3>Développement d'applications</h3>
-        <p>Applications desktop et web avec PHP, Java, WinDev, MySQL, etc.</p>
-      </div>
-  
-      <div class="service">
-        <i class="fas fa-chalkboard-teacher fa-2x icon-service"></i>
-        <h3>Formation et accompagnement</h3>
-        <p>Cours personnalisés en informatique, marketing digital, bureautique.</p>
-      </div>
-  
-    </div>
-  </section>
-  <section id="testimonials">
-  <h2>Témoignages</h2>
-  <div class="testimonials-grid">
+      <a class="nav-cta" href="cv/cv.pdf" download>Télécharger le CV</a>
+    </nav>
 
-    <div class="testimonial">
-      <p>“Mamadou est un développeur très professionnel, à l’écoute et rapide dans l’exécution. Je recommande vivement !”</p>
-      <h4>— Client Anonyme</h4>
-    </div>
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">Portfolio professionnel</span>
+            <h1>Mamadou Alpha Barry</h1>
+            <p class="hero-title">Développeur Web | Administrateur Réseau | Gestionnaire de Bases de Données</p>
+            <div class="typewriter-wrap" aria-live="polite">
+              <span id="typewriter"></span><span class="cursor">|</span>
+            </div>
+            <p class="hero-text">Diplômé en Génie Informatique de l'IST-Mamou, je conçois des solutions numériques fiables, élégantes et performantes pour les entreprises, écoles et particuliers.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">Voir mes projets</a>
+              <a class="button button-secondary" href="cv/cv.pdf" download>Télécharger mon CV</a>
+              <a class="button button-ghost" href="#contact">Me contacter</a>
+            </div>
+            <div class="hero-badges">
+              <span>Web</span>
+              <span>Réseaux</span>
+              <span>Data</span>
+              <span>Formation</span>
+            </div>
+          </div>
+          <div class="hero-card reveal">
+            <div class="hero-photo">
+              <img src="image/montage.jpeg" alt="Portrait professionnel de Mamadou Alpha Barry">
+            </div>
+            <div class="hero-card-info">
+              <div>
+                <p class="card-label">Profil</p>
+                <h2>Mamadou Alpha Barry</h2>
+              </div>
+              <p>Développement web, applications, bases de données, formation informatique et marketing digital.</p>
+              <ul>
+                <li><i class="fa-solid fa-circle-check"></i> Solutions sur mesure</li>
+                <li><i class="fa-solid fa-circle-check"></i> Livraison rapide</li>
+                <li><i class="fa-solid fa-circle-check"></i> Support continu</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <div class="testimonial">
-      <p>“Excellent formateur. Grâce à ses cours, j’ai appris à utiliser Canva, PowerPoint et créer mes propres visuels.”</p>
-      <h4>— Apprenant de HAITZ-EMPIRE</h4>
-    </div>
+      <section class="section reveal" id="about">
+        <div class="section-heading">
+          <span>01</span>
+          <h2>À propos</h2>
+        </div>
+        <div class="about-grid">
+          <article class="glass-card">
+            <h3>Mon parcours</h3>
+            <p>Diplômé en Génie Informatique, j'ai construit mon expertise à travers le développement web, l'administration réseau, la gestion de bases de données et l'accompagnement numérique.</p>
+          </article>
+          <article class="glass-card">
+            <h3>Ma vision</h3>
+            <p>Créer des solutions digitales utiles, esthétiques et robustes, pensées pour améliorer l'efficacité, l'image de marque et la croissance des projets que j'accompagne.</p>
+          </article>
+          <article class="glass-card">
+            <h3>Ma mission</h3>
+            <p>Aider les entreprises, écoles et particuliers à réussir leur transformation digitale grâce à des services fiables, sécurisés et performants.</p>
+          </article>
+        </div>
+      </section>
 
-    <div class="testimonial">
-      <p>“Grâce à sa solution Windev, nous gérons désormais facilement nos ventes avec une base de données solide.”</p>
-      <h4>— Partenaire logiciel</h4>
-    </div>
+      <section class="section reveal" id="timeline">
+        <div class="section-heading">
+          <span>02</span>
+          <h2>Parcours</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item"><span>2009 - 2018</span><h3>École primaire et collège</h3><p>Construction des bases académiques et développement de la discipline personnelle.</p></article>
+          <article class="timeline-item"><span>2018 - 2022</span><h3>Baccalauréat scientifique</h3><p>Renforcement des capacités logiques, mathématiques et scientifiques.</p></article>
+          <article class="timeline-item"><span>2022 - 2026</span><h3>Licence en Génie Informatique</h3><p>Institut Supérieur de Technologie de Mamou, spécialisation en informatique et solutions numériques.</p></article>
+          <article class="timeline-item"><span>2025</span><h3>Agent Recenseur RGPH-4</h3><p>Participation aux opérations numériques de collecte et de structuration de données.</p></article>
+          <article class="timeline-item"><span>2025</span><h3>Lancement du portfolio professionnel</h3><p>Conception d'une vitrine personnelle centrée sur les services, projets et réalisations.</p></article>
+          <article class="timeline-item"><span>2026</span><h3>Obtention de la Licence</h3><p>Validation du cursus universitaire et consolidation de l'expertise professionnelle.</p></article>
+        </div>
+      </section>
 
+      <section class="section reveal" id="skills">
+        <div class="section-heading">
+          <span>03</span>
+          <h2>Compétences</h2>
+        </div>
+        <div class="skill-grid">
+          <article class="glass-card skill-card"><h3><i class="fa-solid fa-code"></i> Développement web</h3><p>HTML, CSS, JavaScript, PHP</p></article>
+          <article class="glass-card skill-card"><h3><i class="fa-solid fa-laptop-code"></i> Programmation</h3><p>Java, Python, WinDev</p></article>
+          <article class="glass-card skill-card"><h3><i class="fa-solid fa-database"></i> Bases de données</h3><p>MySQL, Access, HFSQL</p></article>
+          <article class="glass-card skill-card"><h3><i class="fa-solid fa-pen-ruler"></i> Design</h3><p>Canva, Photoshop, Figma</p></article>
+          <article class="glass-card skill-card"><h3><i class="fa-solid fa-bullhorn"></i> Marketing</h3><p>Marketing digital</p></article>
+          <article class="glass-card skill-card"><h3><i class="fa-solid fa-book"></i> Bureautique</h3><p>Word, Excel, PowerPoint, Access</p></article>
+        </div>
+        <div class="progress-grid">
+          <div class="progress-item"><span>HTML/CSS</span><div class="progress-bar"><i data-level="95"></i></div></div>
+          <div class="progress-item"><span>JavaScript</span><div class="progress-bar"><i data-level="90"></i></div></div>
+          <div class="progress-item"><span>PHP/MySQL</span><div class="progress-bar"><i data-level="90"></i></div></div>
+          <div class="progress-item"><span>Java</span><div class="progress-bar"><i data-level="85"></i></div></div>
+          <div class="progress-item"><span>WinDev</span><div class="progress-bar"><i data-level="85"></i></div></div>
+          <div class="progress-item"><span>Python</span><div class="progress-bar"><i data-level="75"></i></div></div>
+          <div class="progress-item"><span>Administration réseau</span><div class="progress-bar"><i data-level="80"></i></div></div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="services">
+        <div class="section-heading">
+          <span>04</span>
+          <h2>Services</h2>
+        </div>
+        <div class="service-grid">
+          <article class="glass-card service-card"><i class="fa-solid fa-globe"></i><h3>Création de sites web</h3><p>Sites vitrines, portails dynamiques et interfaces modernes adaptées aux objectifs métier.</p></article>
+          <article class="glass-card service-card"><i class="fa-solid fa-mobile-screen-button"></i><h3>Développement d'applications</h3><p>Applications web et desktop centrées sur la performance, la clarté et la productivité.</p></article>
+          <article class="glass-card service-card"><i class="fa-solid fa-server"></i><h3>Administration de bases de données</h3><p>Conception, structuration, optimisation et maintenance de données fiables.</p></article>
+          <article class="glass-card service-card"><i class="fa-solid fa-chalkboard-user"></i><h3>Formation informatique</h3><p>Sessions pédagogiques en informatique de base, bureautique et outils numériques.</p></article>
+          <article class="glass-card service-card"><i class="fa-solid fa-chart-line"></i><h3>Marketing digital</h3><p>Stratégies de visibilité, contenus digitaux et appui à la croissance en ligne.</p></article>
+          <article class="glass-card service-card"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Assistance informatique</h3><p>Support technique, conseil, maintenance et accompagnement opérationnel.</p></article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="projects">
+        <div class="section-heading">
+          <span>05</span>
+          <h2>Projets</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card glass-card">
+            <img src="image/Java.PNG" alt="Application client-serveur pour le département Génie Informatique IST-Mamou">
+            <div class="project-body">
+              <p class="project-tag">Java / MySQL</p>
+              <h3>Application client-serveur IST-Mamou</h3>
+              <p>Gestion du département Génie Informatique avec une architecture client-serveur centralisée.</p>
+              <div class="project-meta"><span><strong>Difficulté :</strong> synchronisation des données</span><span><strong>Solution :</strong> logique métier structurée</span></div>
+              <a href="#contact" class="project-link">Voir le projet</a>
+            </div>
+          </article>
+          <article class="project-card glass-card">
+            <img src="image/Access.PNG" alt="Application de gestion de vente">
+            <div class="project-body">
+              <p class="project-tag">Java / Swing / H2</p>
+              <h3>Application de gestion de vente</h3>
+              <p>Gestion de commandes, panier, QR code et impression PDF pour une expérience de vente fluide.</p>
+              <div class="project-meta"><span><strong>Difficulté :</strong> génération des reçus</span><span><strong>Solution :</strong> automatisation des flux</span></div>
+              <a href="#contact" class="project-link">Voir le projet</a>
+            </div>
+          </article>
+          <article class="project-card glass-card">
+            <img src="image/widev.PNG" alt="Site web pour agence d'assurance">
+            <div class="project-body">
+              <p class="project-tag">PHP / MySQL</p>
+              <h3>Site web pour agence d'assurance</h3>
+              <p>Plateforme orientée présentation, suivi et valorisation des services d'assurance.</p>
+              <div class="project-meta"><span><strong>Difficulté :</strong> présentation des données</span><span><strong>Solution :</strong> interface claire et rassurante</span></div>
+              <a href="#contact" class="project-link">Voir le projet</a>
+            </div>
+          </article>
+          <article class="project-card glass-card project-card-network">
+            <img src="image/network-school.svg" alt="Illustration d'une infrastructure réseau pour le complexe scolaire Halima de Mamou">
+            <div class="project-body">
+              <p class="project-tag">Cisco / Windows Server</p>
+              <h3>Infrastructure réseau pour le complexe scolaire Halima de Mamou</h3>
+              <p>Déploiement d'une architecture réseau structurée pour la circulation sécurisée des ressources scolaires et des postes informatiques.</p>
+              <div class="project-meta"><span><strong>Difficulté :</strong> segmentation du réseau</span><span><strong>Solution :</strong> configuration claire des accès</span></div>
+              <a href="#contact" class="project-link">Voir le projet</a>
+            </div>
+          </article>
+          <article class="project-card glass-card">
+            <img src="image/portFolio.PNG" alt="Portfolio professionnel">
+            <div class="project-body">
+              <p class="project-tag">React / Tailwind / JavaScript</p>
+              <h3>Portfolio professionnel</h3>
+              <p>Portfolio moderne pensé pour l'image de marque, la crédibilité et la conversion des visiteurs.</p>
+              <div class="project-meta"><span><strong>Difficulté :</strong> cohérence visuelle</span><span><strong>Solution :</strong> design premium et hiérarchisé</span></div>
+              <a href="#contact" class="project-link">Voir le projet</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="achievements">
+        <div class="section-heading">
+          <span>06</span>
+          <h2>Réalisations</h2>
+        </div>
+        <div class="stats-grid">
+          <article class="glass-card stat-card"><strong class="counter" data-target="15">0</strong><span>Projets réalisés</span></article>
+          <article class="glass-card stat-card"><strong class="counter" data-target="35">0</strong><span>Étudiants formés</span></article>
+          <article class="glass-card stat-card"><strong class="counter" data-target="6">0</strong><span>Sites web créés</span></article>
+          <article class="glass-card stat-card"><strong class="counter" data-target="5">0</strong><span>Applications développées</span></article>
+          <article class="glass-card stat-card"><strong class="counter" data-target="12">0</strong><span>Clients accompagnés</span></article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="certifications">
+        <div class="section-heading">
+          <span>07</span>
+          <h2>Certifications</h2>
+        </div>
+        <div class="cert-grid">
+          <article class="glass-card cert-card"><span>Badge</span><h3>Informatique de base</h3><p>Organisme de formation interne</p><small>2023</small></article>
+          <article class="glass-card cert-card"><span>Badge</span><h3>Maintenance informatique</h3><p>Centre de certification technique</p><small>2024</small></article>
+          <article class="glass-card cert-card"><span>Badge</span><h3>Marketing digital</h3><p>Programme de montée en compétences</p><small>2024</small></article>
+          <article class="glass-card cert-card"><span>Badge</span><h3>Anglais général</h3><p>Coursera</p><small>2024</small></article>
+          <article class="glass-card cert-card"><span>Badge</span><h3>Agent Recenseur RGPH-4</h3><p>Institut National de la Statistique</p><small>2025</small></article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="experience">
+        <div class="section-heading">
+          <span>08</span>
+          <h2>Expériences</h2>
+        </div>
+        <div class="experience-grid">
+          <article class="glass-card experience-card"><h3>Responsable de vente</h3><p>Marché de détail</p></article>
+          <article class="glass-card experience-card"><h3>Formateur</h3><p>Informatique de base et marketing digital</p></article>
+          <article class="glass-card experience-card"><h3>Vendeur en détail</h3><p>Boutique familiale</p></article>
+          <article class="glass-card experience-card"><h3>Agent Recenseur RGPH-4</h3><p>Institut National de la Statistique</p></article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="testimonials">
+        <div class="section-heading">
+          <span>09</span>
+          <h2>Témoignages</h2>
+        </div>
+        <div class="testimonial-shell glass-card">
+          <div class="testimonial-track" id="testimonial-track"></div>
+          <div class="testimonial-dots" id="testimonial-dots"></div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="blog">
+        <div class="section-heading">
+          <span>10</span>
+          <h2>Blog tech</h2>
+        </div>
+        <div class="blog-grid">
+          <article class="glass-card blog-card"><p class="project-tag">Développement</p><h3>Pourquoi apprendre le développement web ?</h3><p>Une base solide pour créer des opportunités professionnelles et des produits utiles.</p></article>
+          <article class="glass-card blog-card"><p class="project-tag">Base de données</p><h3>Les avantages d'une base de données bien conçue</h3><p>Un bon modèle de données accélère les applications et réduit les erreurs métier.</p></article>
+          <article class="glass-card blog-card"><p class="project-tag">Sécurité</p><h3>L'importance de la cybersécurité</h3><p>Protéger les systèmes est indispensable pour garantir la confiance et la continuité.</p></article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="contact">
+        <div class="section-heading">
+          <span>11</span>
+          <h2>Contact</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card glass-card">
+            <h3>Entrer en relation</h3>
+            <p>Envoyez un message pour une mission, une formation ou un accompagnement digital.</p>
+            <ul class="contact-list">
+              <li><i class="fa-solid fa-envelope"></i> barrymamadoualpha124@gmail.com</li>
+              <li><i class="fa-solid fa-phone"></i> +224 621 956 596</li>
+              <li><i class="fa-brands fa-linkedin"></i> linkedin.com/in/mamadou-alpha-barry-965bb2103</li>
+              <li><i class="fa-solid fa-globe"></i> alpha96.netlify.app</li>
+            </ul>
+          </div>
+          <form class="contact-form glass-card" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hidden-field">
+              <label>Ne pas remplir <input name="bot-field"></label>
+            </p>
+            <div class="field-grid">
+              <label><span>Nom</span><input type="text" name="name" required></label>
+              <label><span>Email</span><input type="email" name="email" required></label>
+              <label><span>Téléphone</span><input type="tel" name="phone"></label>
+              <label><span>Sujet</span><input type="text" name="subject" required></label>
+            </div>
+            <label><span>Message</span><textarea name="message" rows="6" required></textarea></label>
+            <button class="button button-primary" type="submit">Envoyer le message</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>barrymamadoualpha124@gmail.com | +224 621 956 596 | <a href="https://alpha96.netlify.app">alpha96.netlify.app</a></p>
+      <p>&copy; 2026 Mamadou Alpha Barry. Tous droits réservés.</p>
+    </footer>
   </div>
-</section>
-<section id="stats" class="fade-in">
-  <h2>Mes Réalisations</h2>
-  <div class="stats-grid">
-    <div class="stat fade-in">
-      <h3 class="counter" data-target="15">0</h3>
-      <p>Projets réalisés</p>
-    </div>
-    
-    <div class="stat fade-in">
-      <h3 class="counter" data-target="35">0</h3>
-      <p>Étudiants formés</p>
-    </div>
-    
-    <div class="stat fade-in">
-      <h3 class="counter" data-target="6">0</h3>
-      <p>Sites web créés</p>
-    </div>
-    
-    <div class="stat fade-in">
-      <h3 class="counter" data-target="5">0</h3>
-      <p>Applications développées</p>
-    </div>    
-  </div>
-</section>
 
-
-  
-  <section id="competances">
-    <h2>Mes Compétances</h2>
-    <ul>
-        <li>HTML5 / CSS/ JavaScript</li>
-        <li>PHP / MySQL</li>
-        <li>Windev /HFSQL/ Accèes</li>
-        <li>admistration de base données</li>
-        <li>Création de Systèmes de gestion</li>
-        <li>Python / Django</li>
-    </ul>
-</section>
-
-  <!-- SECTION PROJETS -->
-  <section id="projects">
-    <h2>Mes Projets</h2>
-    <div class="projects">
-
-      <div class="project">
-        <img src="image/Access.PNG" alt="Projet Formulaire PHP">
-        <div class="project-description">
-          <h3>Formulaire PHP & MySQL</h3>
-          <p>Entièrement, Modification, suppression avec design Moderne.</p>
-        </div>
+  <button class="chat-launcher" id="chat-launcher" aria-label="Ouvrir l'assistant virtuel">
+    <i class="fa-solid fa-comment-dots"></i>
+  </button>
+  <aside class="chatbot glass-card" id="chatbot" aria-hidden="true">
+    <div class="chatbot-header">
+      <div>
+        <p>Assistant virtuel</p>
+        <strong>Mamadou Alpha Barry</strong>
       </div>
-
-      <div class="project">
-        <img src="image/Java.PNG" alt="Projet Java">
-        <div class="project-description">
-          <h3>Application de gestion de vente (java, swing, H2)</h3>
-          <p>Application de gestion avec panier de commande , génére un code QR en fonction de la quantité, impression en format PDF.</p>
-        </div>
-      </div>
-      <div class="project">
-        <img src="image/widev.PNG" alt="Portfolio">
-        <div class="project-description">
-          <h3>Gestion d'agence d'assurance (windev,HFSQL) </h3>
-          <p>Projet complet avec gestion des contrats, des paiements, et une HFSQL.</p>
-        </div>
-      </div>
-
-      <div class="project">
-        <img src="image/portFolio.PNG" alt="Portfolio">
-        <div class="project-description">
-          <h3>Creation d'un portfolio</h3>
-          <p>Entièrement réalisé avec HTML, CSS et JavaScript.</p>
-        </div>
-      </div>
-
+      <button id="chat-close" aria-label="Fermer l'assistant"><i class="fa-solid fa-xmark"></i></button>
     </div>
-  </section>
-
-  <section id="contacts">
-    <h2>Laisser moi un message</h2>
-    <form action="https://formspree.io/f/mzzrrlej" method="POST" class="contact-form">
-        <input type="text" name="nom" placeholder="Nom complet" required>
-        <input type="email" name="email" placeholder="Entrer votre mail" required>
-        <textarea name="message" rows="5" placeholder="Entrer votre message..." required></textarea>
-        <button type="submit">Envoyer</button>
+    <div class="chatbot-body" id="chatbot-body" role="log" aria-live="polite" aria-relevant="additions text"></div>
+    <div class="chatbot-actions">
+      <button type="button" data-reply="saluer">Bonjour</button>
+      <button type="button" data-reply="projets">Projets</button>
+      <button type="button" data-reply="services">Services</button>
+      <button type="button" data-reply="contact">Contact</button>
+      <button type="button" data-reply="cv">CV</button>
+      <button type="button" data-reply="skills">Compétences</button>
+    </div>
+    <form class="chatbot-form" id="chatbot-form">
+      <input id="chatbot-input" type="text" placeholder="Écrivez votre message..." autocomplete="off" aria-label="Écrire un message à l'assistant">
+      <button type="submit">Envoyer</button>
     </form>
-</section>
+  </aside>
 
-  <!-- SECTION CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p><a href="cv/cv.pdf" class="btn-cv" download>Télécharger mon CV</a></p>
-    <p>Email : <a href="mailto:barrymamadoualpha124@gmail.com">barrymamadoualpha124@gmail.com</a></p>
-    <p>Téléphone : +224 621 956 596</p>
-    <p>Adresse : Gomboyah,Coyah, Conakry</p>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 HAITZ-EMPIRE. Tous droits réservés.
-  </footer>
-
-  <!-- SCRIPT JS -->
   <script src="portFolio.js"></script>
 </body>
 </html>

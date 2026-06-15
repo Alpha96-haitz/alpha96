@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Infrastructure réseau pour complexe scolaire">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07111f"/>
+      <stop offset="100%" stop-color="#132849"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#74b8ff"/>
+      <stop offset="100%" stop-color="#ffb454"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="48" fill="url(#bg)"/>
+  <circle cx="960" cy="150" r="110" fill="#74b8ff" opacity="0.12"/>
+  <circle cx="190" cy="630" r="160" fill="#ffb454" opacity="0.10"/>
+
+  <rect x="120" y="220" width="340" height="260" rx="28" fill="#0f203b" stroke="#74b8ff" stroke-opacity="0.2"/>
+  <rect x="160" y="160" width="260" height="80" rx="18" fill="#173055"/>
+  <path d="M190 240h200v-36H190z" fill="#74b8ff" opacity="0.75"/>
+  <rect x="188" y="270" width="54" height="70" rx="8" fill="#dfe8ff" opacity="0.85"/>
+  <rect x="258" y="270" width="54" height="70" rx="8" fill="#dfe8ff" opacity="0.85"/>
+  <rect x="328" y="270" width="54" height="70" rx="8" fill="#dfe8ff" opacity="0.85"/>
+  <rect x="188" y="356" width="54" height="70" rx="8" fill="#dfe8ff" opacity="0.85"/>
+  <rect x="258" y="356" width="54" height="70" rx="8" fill="#dfe8ff" opacity="0.85"/>
+  <rect x="328" y="356" width="54" height="70" rx="8" fill="#dfe8ff" opacity="0.85"/>
+
+  <rect x="560" y="250" width="220" height="140" rx="26" fill="#122640" stroke="#74b8ff" stroke-opacity="0.18"/>
+  <rect x="615" y="290" width="110" height="60" rx="10" fill="#09111d"/>
+  <circle cx="605" cy="280" r="10" fill="#74b8ff"/>
+  <circle cx="635" cy="280" r="10" fill="#ffb454"/>
+  <circle cx="665" cy="280" r="10" fill="#74b8ff"/>
+  <circle cx="695" cy="280" r="10" fill="#ffb454"/>
+  <path d="M615 360h110" stroke="url(#accent)" stroke-width="10" stroke-linecap="round"/>
+
+  <rect x="865" y="210" width="220" height="160" rx="26" fill="#122640" stroke="#74b8ff" stroke-opacity="0.18"/>
+  <rect x="925" y="250" width="100" height="70" rx="12" fill="#09111d"/>
+  <circle cx="910" cy="238" r="8" fill="#74b8ff"/>
+  <circle cx="940" cy="238" r="8" fill="#ffb454"/>
+  <circle cx="970" cy="238" r="8" fill="#74b8ff"/>
+  <circle cx="1000" cy="238" r="8" fill="#ffb454"/>
+
+  <path d="M460 360C520 360 535 320 560 320" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M780 320C820 320 845 290 865 290" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M670 390V510" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M250 480C250 540 310 560 390 560H760C840 560 900 540 900 470" stroke="#74b8ff" stroke-width="8" stroke-linecap="round" stroke-dasharray="16 14"/>
+
+  <circle cx="250" cy="480" r="16" fill="#ffb454"/>
+  <circle cx="560" cy="320" r="16" fill="#74b8ff"/>
+  <circle cx="865" cy="290" r="16" fill="#ffb454"/>
+  <circle cx="670" cy="510" r="16" fill="#74b8ff"/>
+  <circle cx="900" cy="470" r="16" fill="#ffb454"/>
+
+  <text x="120" y="110" fill="#eef3ff" font-family="Arial, sans-serif" font-size="40" font-weight="700">Complexe scolaire Halima de Mamou</text>
+  <text x="120" y="150" fill="#a7b3cf" font-family="Arial, sans-serif" font-size="24">Réseau local • Serveurs • Postes enseignants • Sécurité</text>
+</svg>

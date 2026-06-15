@@ -1,140 +1,349 @@
-// ===== TYPEWRITER EFFECT =====
-const textes = [
-    "Bienvenue Chez Haitz-empire",
-    "Je suis Mamadou Alpha Barry",
-    "Développeur Web & Administrateur de Base de Données"
-  ];
-  
-  let texteIndex = 0;
-  let lettreIndex = 0;
-  let isDeleting = false;
-  const speed = 100;
-  const delayBetweenTexts = 2000;
-  
-  const typewriter = document.getElementById("typewriter");
-  
-  function effetTypewriter() {
-    const texteActuel = textes[texteIndex];
-  
-    if (isDeleting) {
-      lettreIndex--;
-    } else {
-      lettreIndex++;
-    }
-  
-    typewriter.textContent = texteActuel.substring(0, lettreIndex);
-  
-    if (!isDeleting && lettreIndex === texteActuel.length) {
-      isDeleting = true;
-      setTimeout(effetTypewriter, delayBetweenTexts);
-    } else if (isDeleting && lettreIndex === 0) {
-      isDeleting = false;
-      texteIndex = (texteIndex + 1) % textes.length;
-      setTimeout(effetTypewriter, 500);
-    } else {
-      setTimeout(effetTypewriter, speed);
-    }
+const texts = [
+  'Bienvenue sur mon portfolio',
+  'Je suis Mamadou Alpha Barry',
+  'Développeur Web',
+  'Administrateur Réseau',
+  'Gestionnaire de Bases de Données',
+  'Entrepreneur Digital'
+];
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+const typewriter = document.getElementById('typewriter');
+const progressBars = document.querySelectorAll('.progress-bar i');
+const counters = document.querySelectorAll('.counter');
+const revealElements = document.querySelectorAll('.reveal');
+const form = document.querySelector('.contact-form');
+const status = document.getElementById('form-status');
+const testimonialTrack = document.getElementById('testimonial-track');
+const testimonialDots = document.getElementById('testimonial-dots');
+const chatLauncher = document.getElementById('chat-launcher');
+const chatClose = document.getElementById('chat-close');
+const chatbot = document.getElementById('chatbot');
+const chatbotBody = document.getElementById('chatbot-body');
+const chatbotForm = document.getElementById('chatbot-form');
+const chatbotInput = document.getElementById('chatbot-input');
+
+const testimonialItems = [
+  {
+    quote: 'Mamadou livre des solutions propres, rapides et fiables. La collaboration a été simple et très professionnelle.',
+    author: 'Client partenaire'
+  },
+  {
+    quote: 'Ses formations sont claires, concrètes et adaptées au niveau de chacun. Les apprenants progressent vite.',
+    author: 'Apprenant'
+  },
+  {
+    quote: 'Excellent sens du détail sur les projets techniques, avec une vraie rigueur dans l’organisation.',
+    author: 'Responsable projet'
   }
-  
-  document.addEventListener("DOMContentLoaded", effetTypewriter);
-  
-  // ===== HAMBURGER MENU TOGGLE =====
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
-  
-  hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
-  
-  // ===== FERMETURE DU MENU APRÈS CLIC SUR UN LIEN (mobile) =====
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove("show");
-    });
-  });
-  
-  // ===== DÉFILEMENT FLUIDE VERS LES SECTIONS =====
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-  
-  //affichage du message àpres l'envoi
+];
 
-  const form = document.querySelector(".contact-form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    fetch(form.action,{
-        method: "POST",
-        body: data,
-        headers:{
-            'Accept': 'application/json'
-        }
-    }).then(response =>{
-        if (response.ok){
-            form.innerHTML = "<p style='color:green;'>Merci ! votre message a bien été envoyer chez Haitz-empire.</p>";
-        }else{
-            form.innerHTML = "<p style = 'color: red;'> Une erreur s'est produite. Réessayez plus tard.</p>";
-        }
+const chatbotReplies = {
+  saluer: 'Bonjour et bienvenue. Je peux vous guider sur les projets, services, compétences, le CV ou les moyens de contact.',
+  projets: 'Je peux vous présenter les applications, sites web et le projet réseau du complexe scolaire Halima de Mamou.',
+  services: 'Les services couvrent le développement web, les applications, les bases de données, la formation et le marketing digital.',
+  contact: 'Vous pouvez écrire via le formulaire ou utiliser directement l’email, le téléphone et LinkedIn affichés sur la page.',
+  cv: 'Le CV est disponible en téléchargement direct depuis le bouton du menu ou le bouton du hero.',
+  skills: 'Mes compétences principales couvrent HTML, CSS, JavaScript, PHP, Java, Python, WinDev, MySQL et l’administration réseau.'
+};
+
+const chatbotState = {
+  greeted: false
+};
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+}
+
+document.querySelectorAll('.nav-links a').forEach((link) => {
+  link.addEventListener('click', () => {
+    navLinks?.classList.remove('open');
+    navToggle?.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener('click', (event) => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (!target) return;
+    event.preventDefault();
+    const offset = 96;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+});
+
+function startTypewriter() {
+  if (!typewriter) return;
+  let textIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const tick = () => {
+    const current = texts[textIndex];
+    charIndex += deleting ? -1 : 1;
+    typewriter.textContent = current.slice(0, charIndex);
+
+    if (!deleting && charIndex === current.length) {
+      deleting = true;
+      window.setTimeout(tick, 1800);
+      return;
+    }
+
+    if (deleting && charIndex === 0) {
+      deleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+    }
+
+    window.setTimeout(tick, deleting ? 45 : 70);
+  };
+
+  tick();
+}
+
+function animateProgressBars() {
+  progressBars.forEach((bar) => {
+    const level = Number(bar.dataset.level || 0);
+    bar.style.width = `${level}%`;
+  });
+}
+
+function animateCounter(counter) {
+  const target = Number(counter.dataset.target || 0);
+  const duration = 1500;
+  const start = performance.now();
+
+  const step = (time) => {
+    const progress = Math.min((time - start) / duration, 1);
+    counter.textContent = Math.round(progress * target).toString();
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  };
+
+  requestAnimationFrame(step);
+}
+
+const intersectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    if (entry.target.classList.contains('counter')) {
+      animateCounter(entry.target);
+    }
+    if (entry.target.id === 'skills') {
+      animateProgressBars();
+    }
+    intersectionObserver.unobserve(entry.target);
+  });
+}, { threshold: 0.2 });
+
+revealElements.forEach((element) => intersectionObserver.observe(element));
+counters.forEach((counter) => intersectionObserver.observe(counter));
+const skillsSection = document.getElementById('skills');
+if (skillsSection) intersectionObserver.observe(skillsSection);
+
+function renderTestimonials() {
+  if (!testimonialTrack || !testimonialDots) return;
+  testimonialTrack.innerHTML = testimonialItems.map((item) => `
+    <article class="testimonial-slide">
+      <p>“${item.quote}”</p>
+      <strong>${item.author}</strong>
+    </article>
+  `).join('');
+
+  testimonialDots.innerHTML = testimonialItems.map((_, index) => `<button type="button" aria-label="Afficher le témoignage ${index + 1}"></button>`).join('');
+
+  const dots = Array.from(testimonialDots.querySelectorAll('button'));
+  let activeIndex = 0;
+
+  const update = () => {
+    testimonialTrack.style.transform = `translateX(-${activeIndex * 100}%)`;
+    dots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
+  };
+
+  dots.forEach((dot, index) => dot.addEventListener('click', () => {
+    activeIndex = index;
+    update();
+  }));
+
+  update();
+
+  window.setInterval(() => {
+    activeIndex = (activeIndex + 1) % testimonialItems.length;
+    update();
+  }, 5000);
+}
+
+function handleForm() {
+  if (!form || !status) return;
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    status.textContent = 'Envoi en cours...';
+
+    const formData = new FormData(form);
+    const payload = new URLSearchParams(formData);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload.toString()
+      });
+
+      if (!response.ok) throw new Error('Network response was not ok');
+
+      form.reset();
+      status.textContent = 'Merci, votre message a bien été envoyé.';
+      status.style.color = '#74b8ff';
+    } catch (error) {
+      status.textContent = 'Le message est prêt, mais la soumission nécessite un déploiement Netlify.';
+      status.style.color = '#ffb454';
+    }
+  });
+}
+
+function setupChatbot() {
+  if (!chatLauncher || !chatClose || !chatbot || !chatbotBody || !chatbotForm || !chatbotInput) return;
+
+  const appendMessage = (text, role = 'bot') => {
+    const message = document.createElement('div');
+    message.className = `chatbot-message ${role}`;
+    message.textContent = text;
+    chatbotBody.appendChild(message);
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+  };
+
+  const replyFromInput = (text) => {
+    const normalized = text.toLowerCase();
+    if (normalized.includes('projet')) return chatbotReplies.projets;
+    if (normalized.includes('service')) return chatbotReplies.services;
+    if (normalized.includes('contact') || normalized.includes('email') || normalized.includes('téléphone') || normalized.includes('telephone')) return chatbotReplies.contact;
+    if (normalized.includes('cv') || normalized.includes('curriculum')) return chatbotReplies.cv;
+    if (normalized.includes('compétence') || normalized.includes('competence') || normalized.includes('skill')) return chatbotReplies.skills;
+    if (normalized.includes('bonjour') || normalized.includes('salut') || normalized.includes('hello')) return chatbotReplies.saluer;
+    return 'Je peux aider sur les projets, les services, les compétences, le CV ou le contact.';
+  };
+
+  const openChatbot = () => {
+    chatbot.classList.add('open');
+    chatbot.setAttribute('aria-hidden', 'false');
+    if (!chatbotState.greeted) {
+      appendMessage("Bonjour, je suis l'assistant virtuel de Mamadou Alpha Barry. Comment puis-je vous aider ?", 'bot');
+      appendMessage('Vous pouvez cliquer sur un raccourci ou écrire votre question directement.', 'bot');
+      chatbotState.greeted = true;
+    }
+    window.setTimeout(() => chatbotInput.focus(), 50);
+  };
+
+  const closeChatbot = () => {
+    chatbot.classList.remove('open');
+    chatbot.setAttribute('aria-hidden', 'true');
+  };
+
+  chatLauncher.addEventListener('click', () => {
+    openChatbot();
+  });
+
+  chatClose.addEventListener('click', () => {
+    closeChatbot();
+  });
+
+  chatbot.querySelectorAll('[data-reply]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const choice = button.dataset.reply || '';
+      const question = button.textContent.trim();
+      appendMessage(question, 'user');
+      appendMessage(chatbotReplies[choice] || chatbotReplies.saluer, 'bot');
     });
   });
 
-  // realilsation
-  const counters = document.querySelectorAll('.counter');
+  chatbotForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const message = chatbotInput.value.trim();
+    if (!message) return;
+    appendMessage(message, 'user');
+    appendMessage(replyFromInput(message), 'bot');
+    chatbotInput.value = '';
+    chatbotInput.focus();
+  });
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const target = +counter.getAttribute('data-target');
-        let count = 0;
-        const step = target / 50;
-  
-        const updateCounter = () => {
-          if (count < target) {
-            count += step;
-            counter.textContent = Math.ceil(count);
-            setTimeout(updateCounter, 20);
-          } else {
-            counter.textContent = target;
-          }
-        };
-  
-        updateCounter();
-        observer.unobserve(counter); // pour ne pas recommencer
-      }
-    });
-  }, {
-    threshold: 0.5
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeChatbot();
+    }
   });
-  
-  // Observer chaque compteur
-  counters.forEach(counter => observer.observe(counter));
-  
-  // ⚠️ Corrige le problème de "chargé mais pas scrollé"
-  window.addEventListener("load", () => {
-    counters.forEach(counter => {
-      observer.observe(counter); // relance l'observation au chargement
-    });
-  });
-  const fadeElements = document.querySelectorAll('.fade-in');
 
-  const fadeObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.3
+  if (!chatbotState.greeted) {
+    appendMessage('Tapez une question ou utilisez les boutons rapides ci-dessous.', 'bot');
+    chatbotState.greeted = true;
+  }
+}
+
+function setupParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas || prefersReducedMotion) return;
+  const context = canvas.getContext('2d');
+  const particles = [];
+
+  const resize = () => {
+    canvas.width = window.innerWidth * window.devicePixelRatio;
+    canvas.height = window.innerHeight * window.devicePixelRatio;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+    context.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+  };
+
+  const createParticle = () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    size: Math.random() * 2.2 + 0.8,
+    speedX: (Math.random() - 0.5) * 0.45,
+    speedY: (Math.random() - 0.5) * 0.45,
+    alpha: Math.random() * 0.5 + 0.2
   });
-  
-  fadeElements.forEach(el => fadeObserver.observe(el));
-  
+
+  const count = window.innerWidth < 768 ? 24 : 48;
+  for (let index = 0; index < count; index += 1) particles.push(createParticle());
+
+  const animate = () => {
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    particles.forEach((particle) => {
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+
+      if (particle.x < 0 || particle.x > window.innerWidth) particle.speedX *= -1;
+      if (particle.y < 0 || particle.y > window.innerHeight) particle.speedY *= -1;
+
+      context.beginPath();
+      context.fillStyle = `rgba(116, 184, 255, ${particle.alpha})`;
+      context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      context.fill();
+    });
+    requestAnimationFrame(animate);
+  };
+
+  resize();
+  animate();
+  window.addEventListener('resize', resize);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  startTypewriter();
+  renderTestimonials();
+  handleForm();
+  setupChatbot();
+  setupParticles();
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js').catch(() => null);
+  });
+}
