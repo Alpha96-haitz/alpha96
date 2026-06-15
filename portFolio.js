@@ -53,6 +53,10 @@ const chatbotState = {
   greeted: false
 };
 
+revealElements.forEach((element, index) => {
+  element.style.setProperty('--reveal-delay', `${Math.min(index * 70, 420)}ms`);
+});
+
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
@@ -291,6 +295,8 @@ function setupParticles() {
   if (!canvas || prefersReducedMotion) return;
   const context = canvas.getContext('2d');
   const particles = [];
+  let animationFrameId = 0;
+  let running = true;
 
   const resize = () => {
     canvas.width = window.innerWidth * window.devicePixelRatio;
@@ -313,6 +319,7 @@ function setupParticles() {
   for (let index = 0; index < count; index += 1) particles.push(createParticle());
 
   const animate = () => {
+    if (!running) return;
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     particles.forEach((particle) => {
       particle.x += particle.speedX;
@@ -326,12 +333,20 @@ function setupParticles() {
       context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
       context.fill();
     });
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
   };
 
   resize();
   animate();
   window.addEventListener('resize', resize);
+  document.addEventListener('visibilitychange', () => {
+    running = !document.hidden;
+    if (running) {
+      animate();
+    } else {
+      cancelAnimationFrame(animationFrameId);
+    }
+  });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
