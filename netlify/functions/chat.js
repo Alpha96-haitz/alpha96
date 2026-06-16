@@ -110,7 +110,7 @@ Réponds toujours comme un assistant professionnel représentant Mamadou alpha B
           "Authorization": `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-          model: "llama3-8b-8192", // Vous pouvez aussi utiliser "llama3-70b-8192" ou "mixtral-8x7b-32768"
+          model: "mixtral-8x7b-32768", // Modèle alternatif très rapide et performant
           messages: [
             {
               role: "system",
