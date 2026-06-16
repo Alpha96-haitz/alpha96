@@ -880,9 +880,17 @@ section::before {
   .timeline::before { left: 0.4rem; }
   .timeline-item { margin-left: 1.5rem; }
   .timeline-item::before { left: -1.35rem; }
-  .chatbot-actions { grid-template-columns: 1fr; }
-  .chatbot-form { grid-template-columns: 1fr; }
-  .chatbot { width: calc(100vw - 1.2rem); right: 0.6rem; bottom: 4.7rem; }
+  .chatbot-actions { grid-template-columns: repeat(2, 1fr); }
+  .chatbot-form { grid-template-columns: 1fr auto; }
+  .chatbot { 
+    width: calc(100vw - 1.2rem); 
+    right: 0.6rem; 
+    bottom: 5rem; 
+    padding: 1rem;
+  }
+  .chatbot-body {
+    max-height: 50vh; /* S'adapte à la hauteur de l'écran, surtout quand le clavier est ouvert */
+  }
   .section {
     contain-intrinsic-size: 1px 680px;
   }
