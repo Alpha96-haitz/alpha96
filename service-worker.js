@@ -1,4 +1,4 @@
-const CACHE_NAME = 'haitz-empire-v1';
+const CACHE_NAME = 'haitz-empire-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -16,6 +16,7 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting(); // Force la mise à jour immédiate
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
   );
@@ -27,11 +28,18 @@ self.addEventListener('activate', (event) => {
       Promise.all(keys.map((key) => (key === CACHE_NAME ? null : caches.delete(key))))
     )
   );
+  self.clients.claim(); // Prend le contrôle de la page immédiatement
 });
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  // Stratégie "Network First" pour le dev et les mises à jour
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request).catch(() => caches.match('./index.html')))
+    fetch(event.request)
+      .then((response) => {
+        // Optionnel : mettre à jour le cache avec la nouvelle réponse
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
