@@ -21,16 +21,16 @@ exports.handler = async (event) => {
 
     const { message } = body;
 
-    const API_KEY = process.env.GEMINI_API_KEY;
+    const API_KEY = process.env.GROQ_API_KEY;
 
     if (!API_KEY) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ reply: "Erreur système: La variable d'environnement GEMINI_API_KEY n'est pas configurée sur Netlify." })
+        body: JSON.stringify({ reply: "Erreur système: La variable d'environnement GROQ_API_KEY n'est pas configurée sur Netlify." })
       };
     }
 
-    const prompt = `
+    const systemPrompt = `
 Tu es l'assistant officiel de Mamadou alpha Barry.
 
 Fondateur :
@@ -43,7 +43,7 @@ Informations :
 - Administrateur Réseau
 - Gestionnaire de Bases de Données
 - Formateur informatique
-- Fondateur de HAITZ-EMPIRE
+- Fondateur de HAITZ-EMPIRE une entreprise spécialisée dans les services informatiques et le marketing digital.
 
 Compétences :
 
@@ -60,6 +60,13 @@ Canva
 Photoshop
 Figma
 Marketing Digital
+Communication
+sens du service client et de la satisfaction client
+Travail en équipe
+Gestion de projet
+Créativité
+Adaptabilité
+Résolution de problèmes
 
 Services :
 
@@ -68,6 +75,11 @@ Services :
 - Formation informatique
 - Création de bases de données
 - Marketing digital
+- Administration de réseaux
+- Support technique
+- Conseil en informatique
+- maintenance informatique
+- creation de logo et d'identité visuelle
 
 Portfolio :
 https://alpha96.netlify.app
@@ -78,10 +90,7 @@ Téléphone :
 Email :
 barrymamadoualpha124@gmail.com
 
-Réponds toujours comme un assistant professionnel représentant HAITZ-EMPIRE.
-
-Question :
-${message}
+Réponds toujours comme un assistant professionnel représentant Mamadou alpha Barry.
 `;
 
     // Vérifier si 'fetch' existe (au cas où la version Node.js de Netlify serait trop ancienne)
@@ -93,34 +102,39 @@ ${message}
     }
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+      "https://api.groq.com/openai/v1/chat/completions",
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-          contents: [
+          model: "llama3-8b-8192", // Vous pouvez aussi utiliser "llama3-70b-8192" ou "mixtral-8x7b-32768"
+          messages: [
             {
-              parts: [
-                {
-                  text: prompt
-                }
-              ]
+              role: "system",
+              content: systemPrompt
+            },
+            {
+              role: "user",
+              content: message
             }
-          ]
+          ],
+          temperature: 0.7,
+          max_tokens: 512
         })
       }
     );
 
     const data = await response.json();
 
-    // Si Gemini renvoie une erreur (par exemple clé API invalide)
+    // Si Groq renvoie une erreur (par exemple clé API invalide)
     if (!response.ok) {
       return {
         statusCode: 200,
         body: JSON.stringify({
-          reply: `Erreur API Gemini: ${data.error?.message || "Erreur inconnue"}`
+          reply: `Erreur API Groq: ${data.error?.message || "Erreur inconnue"}`
         })
       };
     }
@@ -128,7 +142,7 @@ ${message}
     return {
       statusCode: 200,
       body: JSON.stringify({
-        reply: data.candidates?.[0]?.content?.parts?.[0]?.text || "Désolé, l'IA n'a renvoyé aucune réponse."
+        reply: data.choices?.[0]?.message?.content || "Désolé, l'IA n'a renvoyé aucune réponse."
       })
     };
 
