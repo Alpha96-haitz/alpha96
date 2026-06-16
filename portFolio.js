@@ -264,6 +264,7 @@ function setupChatbot() {
   const openChatbot = () => {
     chatbot.classList.add('open');
     chatbot.setAttribute('aria-hidden', 'false');
+    chatLauncher.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     if (!chatbotState.greeted) {
       appendMessage("Bonjour, je suis l'assistant virtuel de Mamadou Alpha Barry. Comment puis-je vous aider ?", 'bot');
       appendMessage('Vous pouvez cliquer sur un raccourci ou écrire votre question directement.', 'bot');
@@ -275,10 +276,15 @@ function setupChatbot() {
   const closeChatbot = () => {
     chatbot.classList.remove('open');
     chatbot.setAttribute('aria-hidden', 'true');
+    chatLauncher.innerHTML = '<i class="fa-solid fa-comment-dots"></i>';
   };
 
   chatLauncher.addEventListener('click', () => {
-    openChatbot();
+    if (chatbot.classList.contains('open')) {
+      closeChatbot();
+    } else {
+      openChatbot();
+    }
   });
 
   chatClose.addEventListener('click', () => {
