@@ -1,0 +1,17 @@
+[build]
+  # Indique à Netlify où se trouvent vos fonctions serverless
+  functions = "netlify/functions"
+
+# (Optionnel) Permet de raccourcir l'URL d'appel de l'API
+# Au lieu d'appeler "/.netlify/functions/chat", vous pourrez appeler "/api/chat"
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# (Optionnel) Configuration de sécurité de base pour éviter certains problèmes de requêtes
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"

@@ -220,19 +220,45 @@ function setupChatbot() {
     const message = document.createElement('div');
     message.className = `chatbot-message ${role}`;
     message.textContent = text;
+    message.style.whiteSpace = 'pre-wrap'; // Preserve newlines from AI
     chatbotBody.appendChild(message);
     chatbotBody.scrollTop = chatbotBody.scrollHeight;
   };
 
-  const replyFromInput = (text) => {
-    const normalized = text.toLowerCase();
-    if (normalized.includes('projet')) return chatbotReplies.projets;
-    if (normalized.includes('service')) return chatbotReplies.services;
-    if (normalized.includes('contact') || normalized.includes('email') || normalized.includes('téléphone') || normalized.includes('telephone')) return chatbotReplies.contact;
-    if (normalized.includes('cv') || normalized.includes('curriculum')) return chatbotReplies.cv;
-    if (normalized.includes('compétence') || normalized.includes('competence') || normalized.includes('skill')) return chatbotReplies.skills;
-    if (normalized.includes('bonjour') || normalized.includes('salut') || normalized.includes('hello')) return chatbotReplies.saluer;
-    return 'Je peux aider sur les projets, les services, les compétences, le CV ou le contact.';
+  const sendMessageToAPI = async (messageText) => {
+    appendMessage(messageText, 'user');
+    
+    // Add loading indicator
+    const loadingId = 'loading-' + Date.now();
+    const loadingMessage = document.createElement('div');
+    loadingMessage.className = 'chatbot-message bot loading';
+    loadingMessage.id = loadingId;
+    loadingMessage.textContent = 'En train d\'écrire...';
+    chatbotBody.appendChild(loadingMessage);
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+
+    try {
+      const response = await fetch('/.netlify/functions/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: messageText })
+      });
+      
+      const data = await response.json();
+      const loadingEl = document.getElementById(loadingId);
+      if (loadingEl) loadingEl.remove();
+      
+      if (data.reply) {
+        appendMessage(data.reply, 'bot');
+      } else {
+        appendMessage("Désolé, je n'ai pas pu obtenir de réponse.", 'bot');
+      }
+    } catch (error) {
+      console.error(error);
+      const loadingEl = document.getElementById(loadingId);
+      if (loadingEl) loadingEl.remove();
+      appendMessage("Erreur de connexion avec l'assistant.", 'bot');
+    }
   };
 
   const openChatbot = () => {
@@ -261,10 +287,8 @@ function setupChatbot() {
 
   chatbot.querySelectorAll('[data-reply]').forEach((button) => {
     button.addEventListener('click', () => {
-      const choice = button.dataset.reply || '';
       const question = button.textContent.trim();
-      appendMessage(question, 'user');
-      appendMessage(chatbotReplies[choice] || chatbotReplies.saluer, 'bot');
+      sendMessageToAPI(question);
     });
   });
 
@@ -272,8 +296,7 @@ function setupChatbot() {
     event.preventDefault();
     const message = chatbotInput.value.trim();
     if (!message) return;
-    appendMessage(message, 'user');
-    appendMessage(replyFromInput(message), 'bot');
+    sendMessageToAPI(message);
     chatbotInput.value = '';
     chatbotInput.focus();
   });
