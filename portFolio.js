@@ -219,13 +219,31 @@ function setupChatbot() {
   const appendMessage = (text, role = 'bot') => {
     const message = document.createElement('div');
     message.className = `chatbot-message ${role}`;
-    message.textContent = text;
+    
+    // Sécuriser le texte en échappant le HTML
+    const p = document.createElement('p');
+    p.appendChild(document.createTextNode(text));
+    let safeText = p.innerHTML;
+    
+    // Convertir les liens en balises cliquables
+    safeText = safeText.replace(
+      /(https?:\/\/[^\s]+)/g, 
+      '<a href="$1" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline; font-weight: bold;">$1</a>'
+    );
+    
+    message.innerHTML = safeText;
     message.style.whiteSpace = 'pre-wrap'; // Preserve newlines from AI
     chatbotBody.appendChild(message);
     chatbotBody.scrollTop = chatbotBody.scrollHeight;
   };
 
   const sendMessageToAPI = async (messageText) => {
+    // Masquer les boutons d'actions rapides dès que la conversation commence
+    const chatbotActions = document.querySelector('.chatbot-actions');
+    if (chatbotActions) {
+      chatbotActions.style.display = 'none';
+    }
+
     appendMessage(messageText, 'user');
     
     // Add loading indicator
